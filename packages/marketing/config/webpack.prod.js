@@ -6,7 +6,8 @@ const commonConfig = require("./webpack.common");
 const prodConfig = {
     mode:"production",
     output:{
-        filename:"[name].[contenthast].js"
+        filename:"[name].[contenthast].js",
+        publicPath:"/marketing/latest/"
     },
     plusin:[
         new ModuleFederationPlugin({
