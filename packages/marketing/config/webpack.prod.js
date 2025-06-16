@@ -9,7 +9,7 @@ const prodConfig = {
         filename:"[name].[contenthash].js",
         publicPath:"/marketing/latest/"
     },
-    plusin:[
+    plugins:[
         new ModuleFederationPlugin({
             name:"marketing",
             filename:"remoteEntry.js",
