@@ -36,14 +36,13 @@ const Header = ({isSignedIn, onSignOut}) => {
   const classes = useStyles();
  const history = useHistory() // 👈 Hook to programmatically navigate
 
-  const handleSignInClick = () => {
-    // history.push('/auth/signin'); // 👈 Redirect to /auth/signin
-
-    if(isSignedIn && onSignOut){
-      onSignOut();
-    }
-  };
-
+const handleSignInClick = () => {
+  if (isSignedIn && onSignOut) {
+    onSignOut();
+  } else {
+    history.push('/auth/signin'); // 👈 this will work
+  }
+};
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar>
@@ -59,7 +58,7 @@ const Header = ({isSignedIn, onSignOut}) => {
         <Button
           className={classes.signInButton}
           onClick={handleSignInClick}
-          to={isSignedIn ? "/" : "/auth/sign"}
+          
         >
           {isSignedIn ? "Logout" : "Login"}
         </Button>
