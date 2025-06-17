@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,11 +32,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = ({isSignedIn, onSignOut}) => {
   const classes = useStyles();
+ const history = useHistory() // 👈 Hook to programmatically navigate
 
   const handleSignInClick = () => {
-    console.log('Sign In button clicked');
+    // history.push('/auth/signin'); // 👈 Redirect to /auth/signin
+
+    if(isSignedIn && onSignOut){
+      onSignOut();
+    }
   };
 
   return (
@@ -44,7 +49,7 @@ const Header = () => {
       <Toolbar>
         <Typography
           variant="h6"
-         
+          component={RouterLink}
           to="/"
           className={classes.title}
         >
@@ -54,8 +59,9 @@ const Header = () => {
         <Button
           className={classes.signInButton}
           onClick={handleSignInClick}
+          to={isSignedIn ? "/" : "/auth/sign"}
         >
-          Sign In
+          {isSignedIn ? "Logout" : "Login"}
         </Button>
       </Toolbar>
     </AppBar>

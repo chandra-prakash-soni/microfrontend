@@ -1,20 +1,20 @@
 import React from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import {   Route, Switch,Router } from "react-router-dom";
 import { StylesProvider } from "@material-ui/core";
 
 import Landing from "./components/Landing";
 import Pricing from "./components/Pricing";
 
 
-export default ()=>{
+export default ({history})=>{
     return(<div>
         <StylesProvider>
-           <HashRouter>
+           <Router history={history}>
   <Switch>
     <Route exact path="/pricing" component={Pricing} />
     <Route path="/" component={Landing} />
   </Switch>
-</HashRouter>
+</Router>
             
         </StylesProvider>
     </div>)
